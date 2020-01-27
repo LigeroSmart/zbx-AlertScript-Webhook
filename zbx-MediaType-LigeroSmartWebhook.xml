@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-01-27T21:40:34Z</date>
+    <media_types>
+        <media_type>
+            <name>LigeroSmart</name>
+            <type>SCRIPT</type>
+            <script_name>LigeroSmartWebhook.sh</script_name>
+            <parameters>
+                <parameter>{ALERT.SENDTO}</parameter>
+                <parameter>{ALERT.MESSAGE}</parameter>
+            </parameters>
+            <max_sessions>0</max_sessions>
+            <show_event_menu>NO</show_event_menu>
+        </media_type>
+    </media_types>
+</zabbix_export>
