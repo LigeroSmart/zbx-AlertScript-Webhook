@@ -8,7 +8,16 @@
 # Add -k or --insecure if your Moogsoft Endpoint 
 # is using a self-signed certificate
 #
-HTTP_CODE=$(curl -w "%{http_code}" --silent --output /dev/null -H "Content-Type: application/json" "${1}" -d "${2}")
+
+# Treat line breaks comming from Zabbix ensuring that we get a good json on LigeroSmart
+OUTPUT=${2//$'\r'/}
+OUTPUT=${OUTPUT//$'\n'/'\n'}
+OUTPUT=${OUTPUT//\{\\n\"/\{\"}
+OUTPUT=${OUTPUT//,\\n\"/,\"}
+OUTPUT=${OUTPUT//\"\\n\}/\"\}}
+
+
+HTTP_CODE=$(curl -w "%{http_code}" -k --silent --output /dev/null -H "Content-Type: application/json" "${1}" -d "${OUTPUT}")
 
 if [[ "$HTTP_CODE" == 200 ]]
 then
